@@ -8,9 +8,50 @@
 enum class Compass {N, S, W, E};
 
 // Write your code here
-class GPS {
 
-};
+public:
+  GPS(double lat, Compass comp, double longt, Compass longdirt){
+    latitude = lat;
+    longitude = longt;
+    latitudeDirection = comp;
+    longitudeDirection = longdirt;
+    if (lat > 90 || lat < 0){
+      latitude = 0;
+      latitudeDirection = Compass::N;
+    }
+    if (longt > 180 || longt < 0){
+      longitude = 0;
+      longitudeDirection = Compass::W;
+    }
+    if (comp == Compass::W || comp == Compass::E){
+      latitudeDirection = Compass::N;
+    }
+    if (longdirt == Compass::N || longdirt == Compass::S){
+      longitudeDirection = Compass::W;
+    }
+  }
+  GPS(double lat, double longt){
+    latitude = lat;
+    longitude = longt;
+    latitudeDirection = Compass::N;
+    longitudeDirection = Compass::W;
+    if (lat > 90 || lat < 0){
+      latitude = 0;
+      latitudeDirection = Compass::N;
+    }
+    if (longt > 180 || longt < 0){
+      longitude = 0;
+      longitudeDirection = Compass::W;
+    }
+    latitudeDirection = Compass::N;
+    longitudeDirection = Compass::W;
+  }
+  GPS(){
+    latitude = 0;
+    longitude = 0;
+    latitudeDirection = Compass::N;
+    longitudeDirection = Compass::W;
+  }
 
 //------------------------------
 //   DO NOT MODIFY TEST CASES
